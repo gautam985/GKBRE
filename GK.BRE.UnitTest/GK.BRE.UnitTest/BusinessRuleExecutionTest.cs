@@ -76,6 +76,28 @@ namespace GK.BRE.UnitTest
             Assert.IsTrue(result[0].Results.Count == 1 && result[0].Results[0].Result.Comments == "Packing slip for the shipping created successfully");
         }
 
+        [TestMethod]
+        public void TwoProductsTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(new List<Product>()
+            {
+                new Product { Name = "Learning C#", ProductType = ProductType.Video },
+                new Product { Name = "Product 1", ProductType = ProductType.Physical }
+            });
+
+            Assert.IsTrue(result.Count == 2);
+        }
+
+        [TestMethod]
+        public void ProductsNullTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(null);
+
+            Assert.IsTrue(result == null);
+        }
+
         #endregion Test Method
     }
 }
