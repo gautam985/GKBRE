@@ -1,14 +1,10 @@
+using GK.BRE.BC;
+using GK.BRE.Models.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GK.BRE
 {
@@ -26,6 +22,7 @@ namespace GK.BRE
         {
 
             services.AddControllers();
+            services.AddSingleton<IBusinessRulesEngine, BusinessRulesEngine>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
