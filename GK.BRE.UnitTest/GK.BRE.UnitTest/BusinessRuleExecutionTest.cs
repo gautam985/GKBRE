@@ -31,6 +31,51 @@ namespace GK.BRE.UnitTest
             Assert.IsTrue(result[0].Results.Count == 2);
         }
 
+        [TestMethod]
+        public void BookTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(new List<Product>() { new Product { ProductType = ProductType.Book } });
+
+            Assert.IsTrue(result[0].Results.Count == 2);
+        }
+
+        [TestMethod]
+        public void MembershipTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(new List<Product>() { new Product { ProductType = ProductType.Membership } });
+
+            Assert.IsTrue(result[0].Results.Count == 2);
+        }
+
+        [TestMethod]
+        public void MembershipUpgradeTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(new List<Product>() { new Product { ProductType = ProductType.MembershipUpgrade } });
+
+            Assert.IsTrue(result[0].Results.Count == 2);
+        }
+
+        [TestMethod]
+        public void VideoFreeFirstAidTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(new List<Product>() { new Product { Name = "Learning to Ski", ProductType = ProductType.Video } });
+
+            Assert.IsTrue(result[0].Results.Count == 1 && result[0].Results[0].Result.Comments == "Added a free First Aid video to the packing slip successfully");
+        }
+
+        [TestMethod]
+        public void VideoTest()
+        {
+            InitilizeBusinessObjects();
+            var result = _businessRulesEngine.ExecuteBusinessRules(new List<Product>() { new Product { Name = "Learning C#", ProductType = ProductType.Video } });
+
+            Assert.IsTrue(result[0].Results.Count == 1 && result[0].Results[0].Result.Comments == "Packing slip for the shipping created successfully");
+        }
+
         #endregion Test Method
     }
 }
