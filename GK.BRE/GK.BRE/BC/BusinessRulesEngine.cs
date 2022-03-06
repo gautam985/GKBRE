@@ -27,7 +27,7 @@ namespace GK.BRE.BC
 
                 foreach (var product in products)
                 {
-                    var productBRExecutionResult = new ProductBusinessRuleExecutionResult();                    
+                    var productBRExecutionResult = new ProductBusinessRuleExecutionResult();
 
                     foreach (var businessRule in _businessRules)
                     {
@@ -60,7 +60,7 @@ namespace GK.BRE.BC
             {
                 Type[] businessRuleTypes = executingAssembly
                     .GetTypes()
-                    .Where(t => typeof(IBusinessRule).IsAssignableFrom(t))
+                    .Where(t => typeof(IBusinessRule).IsAssignableFrom(t) && t.IsClass)
                     .ToArray();
 
                 foreach (Type rule in businessRuleTypes)
